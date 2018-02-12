@@ -27,7 +27,7 @@ Clone this repository, cd into the folder, and install the development pre-requi
 
 `npm install`
   
-Either connect a real ios/android device via a cable, or start an emulator via xcode or android studio respectively. If no device or emulator is running then the default ios simulator will be automatically started. An Android simulator can also be pre-started without android studio via the command `npm run emu` (assuming a Nexus_6P_API_23 avd is created):
+You can pre-start an emulator via xcode or android studio. If no emulator is running then the default ios simulator will be automatically started. An Android simulator can also be pre-started without android studio via the command `npm run emu` (assuming a Nexus_6P_API_23 avd is created).
   
 To run on ios:
 
@@ -36,6 +36,8 @@ To run on ios:
 To run on android
 
 `npm run android`
+
+To run on a physical device attached via cable, see the additional instructions here: https://facebook.github.io/react-native/docs/running-on-device.html
 
 ## Running Tests
 

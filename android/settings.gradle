@@ -1,0 +1,3 @@
+rootProject.name = 'ccf-app'
+
+include ':app'

@@ -10,16 +10,16 @@ TBD
 
 ## Environment set up
 
-Pre-requisites:
+Development Pre-requisites:
 - ssh key on your mac linked to github account
-- xcode
-- android studio
-- node
+- xcode (via app store) - follow instructions here (https://facebook.github.io/react-native/docs/getting-started.html) for Building Projects with Native Code + Development OS macOS + Target OS iOS (including adding command line tools). 
+- android studio - https://developer.android.com/studio/index.html - follow instructions here (https://facebook.github.io/react-native/docs/getting-started.html) for Building Projects with Native Code + Development OS macOS + Target OS Android. It is recommended to create an emulator for Nexus 6P on Marshmallow (API 23).
 - homebrew : `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)`
+- node : `brew install node` or via http://nodejs.org/
 - watchman : `brew install watchman`
-- react native CLI : `npm install -g react-native-cli` - if you get EACCES permission denied errors, run `- sudo chown -R $USER ~/.npm` and `- sudo chown -R $USER /usr/local/lib/node_modules` then retry
+- react native CLI : `npm install -g react-native-cli` - if you get EACCES permission denied errors, run `sudo chown -R $USER ~/.npm` and `sudo chown -R $USER /usr/local/lib/node_modules` then retry
 - JDK - http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
-- Visual Studio Code (recommended IDE, with TSLINT and react-native tools extensions)
+- Visual Studio Code (recommended IDE, with TSLINT and react-native tools extensions) - https://code.visualstudio.com/
 
 ## Developing against device or emulator
 

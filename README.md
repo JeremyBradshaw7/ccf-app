@@ -23,19 +23,19 @@ Development Pre-requisites:
 
 ## Developing against device or emulator
 
-Clone this repository and install the development pre-requisites:
+Clone this repository, cd into the folder, and install the development pre-requisites:
 
-  $ npm install
+`npm install`
   
 Either connect a real ios/android device via a cable, or start an emulator via xcode or android studio respectively. If no device or emulator is running then the default ios simulator will be automatically started. An Android simulator can also be pre-started without android studio via the command `npm run emu` (assuming a Nexus_6P_API_23 avd is created):
   
 To run on ios:
 
-  $ npm run ios
+`npm run ios`
 
 To run on android
 
-  $ npm run android
+`npm run android`
 
 ## Running Tests
 

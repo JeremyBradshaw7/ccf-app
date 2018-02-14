@@ -1,4 +1,4 @@
-package com.ccf-app;
+package com.ccfapp;
 
 import android.app.Application;
 

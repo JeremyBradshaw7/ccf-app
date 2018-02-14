@@ -1,4 +1,4 @@
-# ccf-app
+# ccfapp
 
 ## Overview
 

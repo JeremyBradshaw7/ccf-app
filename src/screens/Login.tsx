@@ -10,8 +10,6 @@ export interface State {
 
 export default class Login extends React.Component<Props, State> {
 
-  private formValid: boolean = false;
-
   constructor(props) {
     super(props);
     this.state = {
@@ -25,9 +23,12 @@ export default class Login extends React.Component<Props, State> {
     this.setState({
       touched: { ...this.state.touched, submit: true }
     });
-    console.log(this.state);
-    if (this.formValid) {
-      // TBC
+
+    const errors: object = this.validateForm();
+    const formValid: boolean = !Object.keys(errors).some(x => Object.keys(errors[x]).some(y => errors[x][y] !== ''));
+    if (formValid) {
+      // TODO: implement login
+      console.log('Log In');
     }
   }
 
@@ -38,9 +39,9 @@ export default class Login extends React.Component<Props, State> {
         'format': /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.state.email) ? '' : 'Email format invalid'
       },
       password: {
-        'required': this.state.password.length === 0 ? 'Password is required' : '',
-        'min': this.state.password.length < 6 ? 'Minimum password length is 6' : '',
-        'max': this.state.password.length > 15 ? 'Maximum password length is 15' : ''
+        'required': this.state.password.length === 0 ? 'Password is required' : ''
+        // 'min': this.state.password.length < 6 ? 'Minimum password length is 6' : '', // not for me to decide but useful for illustration
+        // 'max': this.state.password.length > 15 ? 'Maximum password length is 15' : ''
       }
     };
   }
@@ -53,9 +54,8 @@ export default class Login extends React.Component<Props, State> {
 
   render() {
     const errors = this.validateForm();
-    this.formValid = !Object.keys(errors).some(x => Object.keys(errors[x]).some(y => errors[x][y] !== ''));
     const fieldError = (field) => {
-      if (this.state.touched[field] || this.state.touched['submit']) {
+      if (this.state.touched[field] || this.state.touched['submit']) { // only show errors once touched or submitted
         const firstError = Object.keys(errors[field]).find(x => errors[field][x] !== '');
         if (typeof firstError === 'string') {
           return errors[field][firstError];

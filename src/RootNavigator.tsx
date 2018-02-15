@@ -51,18 +51,6 @@ export const DrawerStack = DrawerNavigator({
   }
 });
 
-export const DrawerNavigation = StackNavigator({
-  DrawerStack: { screen: DrawerStack }
-}, {
-  headerMode: 'float',
-  navigationOptions: ({navigation}) => ({
-    // headerLeft: <Icon name='menu' onPress={() => navigation.navigate('DrawerOpen')}>Menu</Icon>,
-    // headerStyle: {backgroundColor: '#4C3E54'},
-    headerTitle: 'Welcome!'
-    // headerTintColor: 'white'
-  })
-});
-
 /**
  * Root navigator, to switch between these two states
  */
@@ -70,7 +58,7 @@ export const createRootNavigator = (signedIn = false) => {
   return StackNavigator(
     {
       SignedIn: {
-        screen: DrawerNavigation,
+        screen: DrawerStack,
         navigationOptions: {
           gesturesEnabled: false
         }

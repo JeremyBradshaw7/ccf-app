@@ -1,19 +1,16 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Icon } from 'native-base';
+import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
 
-export interface Props { }
+export interface Props {
+  navigation: any;
+}
 export interface State { }
 
 export default class SelfAssessment extends React.Component<Props, State> {
-  static navigationOptions = ({ navigation }) => ({
-    title: 'Self-Assessment',
-    drawerLabel: 'Self-Assessment',
-    drawerIcon: () => (
-      <Icon name='person' />
-    ),
-    headerLeft: <Icon name='ios-menu' style={{color: 'steelblue', paddingLeft: 10}} onPress={() => navigation.navigate('DrawerOpen')}></Icon>
-  })
+  static navigationOptions = {
+    drawerIcon: <Icon name='person' />
+  };
 
   constructor(props) {
     super(props);
@@ -21,9 +18,23 @@ export default class SelfAssessment extends React.Component<Props, State> {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.heading}>Self-Assessment...</Text>
-      </View>
+      <Container>
+        <Header>
+          <Left>
+            <Button transparent>
+              <Icon name='menu' onPress={() => this.props.navigation.navigate('DrawerOpen')} />
+            </Button>
+          </Left>
+          <Body style={{flex: 6}}>
+            <Title>Self-Assessment</Title>
+          </Body>
+          <Right></Right>
+        </Header>
+
+        <View style={styles.container}>
+          <Text style={styles.heading}>Self-Assessment...</Text>
+        </View>
+      </Container>
     );
   }
 }

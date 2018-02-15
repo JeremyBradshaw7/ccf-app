@@ -1,7 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native';
+import { onSignIn } from '../services/auth';
 
-export interface Props { }
+export interface Props {
+  navigation: any;
+}
 export interface State {
   email: string;
   password: string;
@@ -29,6 +32,7 @@ export default class Login extends React.Component<Props, State> {
     if (formValid) {
       // TODO: implement login
       console.log('Log In');
+      onSignIn().then(() => this.props.navigation.navigate('SignedIn'));
     }
   }
 
@@ -66,13 +70,14 @@ export default class Login extends React.Component<Props, State> {
 
     return (
       <View style={styles.container}>
+
         <Text style={styles.heading}>Coach Competencies</Text>
         <TextInput
           style={[styles.textinput, fieldError('email') ? styles.error : '']}
           placeholder='email'
           keyboardType='email-address'
           autoCapitalize='none'
-          onChangeText={(email) => this.setState({email})}
+          onChangeText={(email) => this.setState({ email })}
           onBlur={this.handleBlur('email')}
           value={this.state.email}
         />
@@ -81,7 +86,7 @@ export default class Login extends React.Component<Props, State> {
           style={[styles.textinput, fieldError('password') ? styles.error : '']}
           placeholder='password'
           secureTextEntry={true}
-          onChangeText={(password) => this.setState({password})}
+          onChangeText={(password) => this.setState({ password })}
           onBlur={this.handleBlur('password')}
           value={this.state.password}
         />

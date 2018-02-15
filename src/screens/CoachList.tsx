@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, FlatList } from 'react-native';
 import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
 
 export interface Props {
@@ -8,9 +8,24 @@ export interface Props {
 export interface State { }
 
 export default class SignedIn extends React.Component<Props, State> {
-  static navigationOptions = {
-    drawerIcon: <Icon name='home' />
-  };
+  static navigationOptions = ({ navigation }) => ({
+    drawerIcon: <Icon name='home' />,
+    tabBarIcon: ({ focused, tintColor }) => {
+      const { routeName } = navigation.state;
+      // let iconName;
+      console.log(routeName, focused, tintColor);
+      // if (routeName === 'SelfAssessment1') {
+      //   iconName = `ios-information-circle${focused ? '' : '-outline'}`;
+      // } else if (routeName === 'SelfAssessment2') {
+      //   iconName = `ios-options${focused ? '' : '-outline'}`;
+      // }
+      // console.log(iconName);
+
+      // You can return any component that you like here! We usually use an
+      // icon component from react-native-vector-icons
+      return <Icon name='person' color={tintColor} />;
+    }
+  })
 
   constructor(props) {
     super(props);

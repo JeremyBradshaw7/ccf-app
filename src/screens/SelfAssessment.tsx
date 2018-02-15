@@ -32,7 +32,7 @@ export default class SelfAssessment extends React.Component<Props, State> {
         </Header>
 
         <View style={styles.container}>
-          <Text style={styles.heading}>Self-Assessment...</Text>
+          <Text style={styles.heading}>Self-Assessment Detail</Text>
         </View>
       </Container>
     );

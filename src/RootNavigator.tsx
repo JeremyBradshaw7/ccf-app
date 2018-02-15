@@ -1,5 +1,5 @@
 import React from 'react';
-import { StackNavigator, DrawerNavigator } from 'react-navigation';
+import { StackNavigator, DrawerNavigator, TabNavigator } from 'react-navigation';
 
 // See https://medium.com/the-react-native-log/building-an-authentication-flow-with-react-navigation-fb5de2203b5c
 
@@ -32,18 +32,45 @@ export const LoginStack = StackNavigator({
 import CoachList from './screens/CoachList';
 import SelfAssessment from './screens/SelfAssessment';
 import Logout from './screens/Logout';
-import { Icon } from 'native-base';
+
+export const SelfAssessmentTabs = TabNavigator({
+  SelfAssessment1: {
+    screen: SelfAssessment,
+    navigationOptions: {
+      title: 'SA1'
+    }
+  },
+  SelfAssessment2: {
+    screen: SelfAssessment,
+    navigationOptions: {
+      title: 'SA2'
+    }
+  },
+  SelfAssessment3: {
+    screen: SelfAssessment,
+    navigationOptions: {
+      title: 'SA3'
+    }
+  },
+  SelfAssessment4: {
+    screen: SelfAssessment,
+    navigationOptions: {
+      title: 'SA4'
+    }
+  },
+  CoachList: {
+    screen: CoachList
+  }
+});
 
 export const DrawerStack = DrawerNavigator({
   CoachList: {
-    screen: CoachList,
-    navigationOptions: {
-
-    }
+    screen: CoachList
   },
   SelfAssessment: {
-    screen: SelfAssessment,
+    screen: SelfAssessmentTabs,
     navigationOptions: {
+      title: 'Self-Assessment'
     }
   },
   Logout: {

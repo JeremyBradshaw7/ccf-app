@@ -27,9 +27,9 @@ import Api from '../../services/api';
 export const loginUser = ({ email, password }) => {
   return (dispatch) => {
     dispatch({ type: AUTH_LOGIN, payload: email });
-    console.log('call Api');
+    console.log('call Api', email, password);
     Api.Login(email, password).then(response => {
-      console.log('success!', response);
+      console.log('ok', response);
       const data = JSON.parse(response['_bodyInit']);
       console.log('data', data);
       const token = data['id'];
@@ -43,10 +43,10 @@ export const loginUser = ({ email, password }) => {
         // "privileges":["Access","Create","Style","Update"],"access":["foundation","youth","senior","expert"]}}"
         dispatch({ type: AUTH_LOGIN_SUCCESS, payload: {user: user, token: token, email: email }});
       } else {
-        dispatch({ type: AUTH_LOGIN_FAIL, payload: data['status'] });
+        dispatch({ type: AUTH_LOGIN_FAIL, payload: {email: email, error: data['error']} });
       }
     }).catch(err => {
-      dispatch({ type: AUTH_LOGIN_FAIL, payload: err });
+      dispatch({ type: AUTH_LOGIN_FAIL, payload: {email: email, error: err} });
       console.log('FAIL!', err);
     });
   };

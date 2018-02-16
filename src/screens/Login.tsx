@@ -19,8 +19,8 @@ class Login extends React.Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: '',
+      email: 'innovedadmin',
+      password: 'innoved123',
       touched: {}
     };
   }
@@ -35,15 +35,16 @@ class Login extends React.Component<Props, State> {
     if (formValid) {
       // TODO: implement login
       console.log('Log In');
-      this.props.loginUser(this.state.email, this.state.password)/*.then(() => this.props.navigation.navigate('SignedIn'))*/;
+      const { email, password } = this.state;
+      this.props.loginUser({ email, password })/*.then(() => this.props.navigation.navigate('SignedIn'))*/;
     }
   }
 
   validateForm() {
     return {
       email: {
-        'required': this.state.email.length === 0 ? 'Email is required' : '',
-        'format': /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.state.email) ? '' : 'Email format invalid'
+        'required': this.state.email.length === 0 ? 'Email is required' : ''
+        // 'format': /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.state.email) ? '' : 'Email format invalid'
       },
       password: {
         'required': this.state.password.length === 0 ? 'Password is required' : ''

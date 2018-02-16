@@ -25,7 +25,7 @@ export default (state = INITIAL_STATE, action) => {
         email: action.payload.email, isLoggedIn: true, loading: false,
         error: '', token: action.payload.token, user: action.payload.user};
     case AUTH_LOGIN_FAIL: // on failing to log in
-      return { ...state, email: '', isLoggedIn: false, loading: false, error: action.payload, token: ''};
+      return { ...state, email: action.payload.email, isLoggedIn: false, loading: false, error: action.payload.error, token: ''};
     case AUTH_LOGOUT: // on logging out
       return { ...state, ...INITIAL_STATE};
     default:

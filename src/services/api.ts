@@ -3,10 +3,7 @@ export default class Api {
 
   static Login(email: string, password: string): Promise<Object> {
 
-    let dummylogin: string = 'innovedadmin';
-    let dummypassw: string = 'innoved123';
-
-    console.log('about to login (fetch)');
+    console.log('about to login (fetch) ', email, password);
     return fetch(this.baseEndpoint + 'login', {
       method: 'POST',
       headers: {
@@ -14,8 +11,8 @@ export default class Api {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        username: dummylogin,
-        password: dummypassw
+        username: email,
+        password: password
       })
     });
   }

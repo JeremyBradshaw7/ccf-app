@@ -2,9 +2,10 @@ import React from 'react';
 import { StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native';
 import { onSignIn } from '../services/auth';
 import { connect } from 'react-redux';
-import { loginUser } from '../redux/auth/actions';
+import { loginUser } from '../appstate/auth/actions';
 
 export interface Props {
+  auth: object;
   navigation: any;
   loginUser: any;
 }
@@ -19,8 +20,8 @@ class Login extends React.Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-      email: 'innovedadmin',
-      password: 'innoved123',
+      email: '',
+      password: '',
       touched: {}
     };
   }
@@ -36,7 +37,7 @@ class Login extends React.Component<Props, State> {
       // TODO: implement login
       console.log('Log In');
       const { email, password } = this.state;
-      this.props.loginUser({ email, password })/*.then(() => this.props.navigation.navigate('SignedIn'))*/;
+      this.props.loginUser({ email, password });
     }
   }
 

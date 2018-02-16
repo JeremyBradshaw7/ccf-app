@@ -1,9 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native';
 import { onSignIn } from '../services/auth';
+import { connect } from 'react-redux';
+import { loginUser } from '../redux/auth/actions';
 
 export interface Props {
   navigation: any;
+  loginUser: any;
 }
 export interface State {
   email: string;
@@ -11,7 +14,7 @@ export interface State {
   touched: object;
 }
 
-export default class Login extends React.Component<Props, State> {
+class Login extends React.Component<Props, State> {
 
   constructor(props) {
     super(props);
@@ -32,7 +35,7 @@ export default class Login extends React.Component<Props, State> {
     if (formValid) {
       // TODO: implement login
       console.log('Log In');
-      onSignIn().then(() => this.props.navigation.navigate('SignedIn'));
+      this.props.loginUser(this.state.email, this.state.password)/*.then(() => this.props.navigation.navigate('SignedIn'))*/;
     }
   }
 
@@ -57,6 +60,7 @@ export default class Login extends React.Component<Props, State> {
   }
 
   render() {
+    // console.log('rerender with props', this.props);
     const errors = this.validateForm();
     const fieldError = (field) => {
       if (this.state.touched[field] || this.state.touched['submit']) { // only show errors once touched or submitted
@@ -148,3 +152,14 @@ const styles: any = StyleSheet.create({
     fontSize: 20
   }
 });
+
+const mapStateToProps = state => {
+  // app state changes we are subscribing to
+  console.log('state fed to login as props:', state);
+  return { auth: state.auth }; // passes required app state into props of this component
+};
+
+export default connect(mapStateToProps, {
+  // actions we want to call
+  loginUser
+})(Login); // connect this screen up to redux store

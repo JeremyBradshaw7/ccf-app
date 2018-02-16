@@ -8,6 +8,9 @@ export interface Props {
 export interface State { }
 
 export default class Assessment extends React.Component<Props, State> {
+
+  private mode: string; // 'CoachAssessment' or 'SelfAssessment'
+
   static navigationOptions = ({ navigation }) => ({
     drawerIcon: <Icon name='person' />,
     tabBarIcon: ({ focused, tintColor }) => {
@@ -17,7 +20,8 @@ export default class Assessment extends React.Component<Props, State> {
 
   constructor(props) {
     super(props);
-    console.log('CTR', props);
+    this.mode = props.navigation.state.routeName;
+    // console.log('CTR', props, this.mode);
   }
 
   render() {
@@ -26,7 +30,7 @@ export default class Assessment extends React.Component<Props, State> {
         <Header>
           <Left style={{ flex: 1 }}>
             <Button transparent>
-              {this.props.navigation.state.routeName === 'CoachAssessment' ?
+              {this.mode === 'CoachAssessment' ?
                 <Icon name='ios-arrow-back-outline' onPress={() => {
                   // want to go Back to the PARENT navigator's previous screen
                   // https://github.com/react-navigation/react-navigation/issues/335 suggests this:
@@ -37,7 +41,7 @@ export default class Assessment extends React.Component<Props, State> {
             </Button>
           </Left>
           <Body style={{ flex: 6, justifyContent: 'center', alignItems: 'center' }}>
-            <Title>Assessment what if this is wide and wider still</Title>
+            <Title>Assessment</Title>
           </Body>
           <Right style={{ flex: 1 }}></Right>
         </Header>

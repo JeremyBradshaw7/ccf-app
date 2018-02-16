@@ -12,7 +12,7 @@ export default class Assessment extends React.Component<Props, State> {
   private mode: string; // 'CoachAssessment' or 'SelfAssessment'
 
   static navigationOptions = ({ navigation }) => ({
-    drawerIcon: <Icon name='person' />,
+    drawerIcon: <Icon name='md-person' />,
     tabBarIcon: ({ focused, tintColor }) => {
       return <Icon name='md-person' style={{ color: tintColor, fontSize: 34 }} />;
     }

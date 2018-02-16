@@ -10,7 +10,7 @@ export interface State { }
 
 export default class Logout extends React.Component<Props, State> {
   static navigationOptions = {
-    drawerIcon: <Icon name='exit'/>
+    drawerIcon: <Icon name='md-exit'/>
   };
 
   constructor(props) {

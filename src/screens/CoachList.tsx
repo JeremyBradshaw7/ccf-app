@@ -9,10 +9,10 @@ export interface State { }
 
 export default class CoachList extends React.Component<Props, State> {
   static navigationOptions = ({ navigation }) => ({
-    drawerIcon: <Icon name='home' />,
+    drawerIcon: <Icon name='md-people' />,
     // NB. trying to put tabBarIcon directly in RootNavigator generates error: 'React' undefined!!
     tabBarIcon: ({ focused, tintColor }) => {
-      return <Icon name='person' color={tintColor} />;
+      return <Icon name='md-people' color={tintColor} />;
     }
   })
 

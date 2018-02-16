@@ -1,5 +1,5 @@
 import React from 'react';
-import { createRootNavigator } from './RootNavigator';
+import { createRootNavigator } from './Routes';
 import { isSignedIn } from './services/auth';
 
 export interface Props { }

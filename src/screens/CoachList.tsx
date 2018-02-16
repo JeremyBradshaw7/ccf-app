@@ -7,22 +7,11 @@ export interface Props {
 }
 export interface State { }
 
-export default class SignedIn extends React.Component<Props, State> {
+export default class CoachList extends React.Component<Props, State> {
   static navigationOptions = ({ navigation }) => ({
     drawerIcon: <Icon name='home' />,
+    // NB. trying to put tabBarIcon directly in RootNavigator generates error: 'React' undefined!!
     tabBarIcon: ({ focused, tintColor }) => {
-      const { routeName } = navigation.state;
-      // let iconName;
-      console.log(routeName, focused, tintColor);
-      // if (routeName === 'SelfAssessment1') {
-      //   iconName = `ios-information-circle${focused ? '' : '-outline'}`;
-      // } else if (routeName === 'SelfAssessment2') {
-      //   iconName = `ios-options${focused ? '' : '-outline'}`;
-      // }
-      // console.log(iconName);
-
-      // You can return any component that you like here! We usually use an
-      // icon component from react-native-vector-icons
       return <Icon name='person' color={tintColor} />;
     }
   })
@@ -35,15 +24,15 @@ export default class SignedIn extends React.Component<Props, State> {
     return (
       <Container>
         <Header>
-          <Left>
+          <Left style={{ flex: 1 }}>
             <Button transparent>
               <Icon name='menu' onPress={() => this.props.navigation.navigate('DrawerOpen')} />
             </Button>
           </Left>
-          <Body style={{ flex: 6 }}>
+          <Body style={{ flex: 6, justifyContent: 'center', alignItems: 'center' }}>
             <Title>Coach List</Title>
           </Body>
-          <Right></Right>
+          <Right style={{ flex: 1 }}></Right>
         </Header>
 
         <FlatList
@@ -73,9 +62,14 @@ export default class SignedIn extends React.Component<Props, State> {
             { key: 'w' },
             { key: 'x' },
             { key: 'y' },
-            { key: 'zzzzzzzzz' }
+            { key: 'zzzzzzzzzz' }
           ]}
-          renderItem={({ item }) => <Text style={styles.listitem}>{item.key}</Text>}
+          renderItem={({ item }) =>
+            <Text
+              onPress={() => this.props.navigation.navigate('CoachAssessment')}
+              style={styles.listitem}>{item.key}
+            </Text>
+          }
         />
 
       </Container>

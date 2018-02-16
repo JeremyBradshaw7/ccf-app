@@ -54,7 +54,3 @@ buck-out/
 
 nohup.out
 
-# Platform-specific files. Igore all except the files we need to edit & persist
-# android/*
-# ios/*
-# !settings.gradle

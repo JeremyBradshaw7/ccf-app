@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native';
-import { onSignIn } from '../services/auth';
 import { connect } from 'react-redux';
 import { loginUser } from '../appstate/auth/actions';
 

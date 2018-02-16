@@ -1,6 +1,5 @@
 import React from 'react';
 import PrimaryNav from './screens/PrimaryNav';
-import { isSignedIn } from './services/auth';
 import { Provider } from 'react-redux';
 import ReduxThunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';

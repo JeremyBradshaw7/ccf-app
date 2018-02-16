@@ -12,11 +12,15 @@
 		"watch": "npm run build -- -w",
 		"emu": "nohup ~/Library/Android/sdk/tools/emulator -avd Nexus_6P_API_23 &",
 		"ios": "npm run build && concurrently -r 'npm run watch' 'react-native run-ios'",
-		"android": "npm run build && concurrently -r 'npm run watch' 'react-native run-android'"
+		"android": "npm run build && concurrently -r 'npm run watch' 'react-native run-android'",
+		"all": "npm run build && concurrently -r 'npm run watch' 'react-native run-ios' 'react-native run-android'"
 	},
 	"dependencies": {
+		"native-base": "^2.3.8",
 		"react": "16.2.0",
-		"react-native": "0.53.0"
+		"react-native": "0.53.0",
+		"react-navigation": "^1.0.3",
+		"react-navigation-slide-from-right-transition": "^1.0.4"
 	},
 	"devDependencies": {
 		"@types/jest": "^22.1.2",

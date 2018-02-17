@@ -12,8 +12,8 @@
       "strict": true,
       "noImplicitAny": false,
  
-      "noUnusedLocals": false,
-      "noUnusedParameters": false,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
       "noImplicitReturns": true,
 
       "allowSyntheticDefaultImports": true,

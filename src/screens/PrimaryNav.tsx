@@ -10,7 +10,7 @@ export interface State { }
 
 class PrimaryNav extends React.Component<Props, State> {
   render() {
-    console.log('************************** re-render primary nav');
+    console.log('** re-render primary nav loggedIn=', this.props.isLoggedIn);
     if (this.props.isLoggedIn) {
       return <RootStack />;
     } else {
@@ -23,7 +23,7 @@ class PrimaryNav extends React.Component<Props, State> {
 const mapStateToProps = state => {
   // app state changes we are subscribing to
   console.log('state fed to PrimaryNav as props:', state);
-  return { isLoggedIn: state.auth.isLoggedIn }; // passes required app state into props of this component - only when something in this return CHANGES
+  return { isLoggedIn: state.auth.isLoggedIn }; // passes required app state into props of this component - only when something in this return CHANGES does it re-render?
 };
 
 export default connect(mapStateToProps)(PrimaryNav); // connect this screen up to redux store

@@ -1,10 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native';
+import { StyleSheet, Text, TextInput, TouchableHighlight, View, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { loginUser } from '../appstate/auth/actions';
 
 export interface Props {
-  auth: object;
+  auth: { loading: boolean, error: string };
   navigation: any;
   loginUser: any;
 }
@@ -33,7 +33,6 @@ class Login extends React.Component<Props, State> {
     const errors: object = this.validateForm();
     const formValid: boolean = !Object.keys(errors).some(x => Object.keys(errors[x]).some(y => errors[x][y] !== ''));
     if (formValid) {
-      // TODO: implement login
       console.log('Log In');
       const { email, password } = this.state;
       this.props.loginUser({ email, password });
@@ -60,6 +59,15 @@ class Login extends React.Component<Props, State> {
     });
   }
 
+  emailChanged = (email: string) => {
+    this.setState({ email });
+    this.props.auth.error = ''; // anti-pattern
+  }
+  passwordChanged = (password: string) => {
+    this.setState({ password });
+    this.props.auth.error = ''; // anti-pattern
+  }
+
   render() {
     // console.log('rerender with props', this.props);
     const errors = this.validateForm();
@@ -82,7 +90,7 @@ class Login extends React.Component<Props, State> {
           placeholder='email'
           keyboardType='email-address'
           autoCapitalize='none'
-          onChangeText={(email) => this.setState({ email })}
+          onChangeText={(email) => this.emailChanged(email)}
           onBlur={this.handleBlur('email')}
           value={this.state.email}
         />
@@ -91,7 +99,7 @@ class Login extends React.Component<Props, State> {
           style={[styles.textinput, fieldError('password') ? styles.error : '']}
           placeholder='password'
           secureTextEntry={true}
-          onChangeText={(password) => this.setState({ password })}
+          onChangeText={(password) => this.passwordChanged(password)}
           onBlur={this.handleBlur('password')}
           value={this.state.password}
         />
@@ -100,8 +108,11 @@ class Login extends React.Component<Props, State> {
           underlayColor='lightsteelblue'
           onPress={this.handleSubmit.bind(this)}
         >
-          <Text style={styles.buttonText}>Log In</Text>
+          {this.props.auth.loading ?
+            <ActivityIndicator color='white' /> : <Text style={styles.buttonText}>Log In</Text>
+          }
         </TouchableHighlight>
+        <Text style={styles.loginErrorMessage}>{this.props.auth.error ? 'Log In failed. Please check your credentials and try again.' : '\n'}</Text>
       </View>
     );
   }
@@ -140,12 +151,19 @@ const styles: any = StyleSheet.create({
     height: 16,
     marginBottom: 0
   },
+  loginErrorMessage: {
+    fontSize: 14,
+    textAlign: 'center',
+    color: 'red',
+    width: 300
+  },
   button: {
     alignItems: 'center',
     backgroundColor: 'steelblue',
-    padding: 10,
+    justifyContent: 'center',
     margin: 18,
     width: 200,
+    height: 50,
     borderRadius: 6
   },
   buttonText: {
@@ -157,7 +175,7 @@ const styles: any = StyleSheet.create({
 const mapStateToProps = state => {
   // app state changes we are subscribing to
   console.log('state fed to login as props:', state);
-  return { auth: state.auth }; // passes required app state into props of this component
+  return { auth: state.auth }; // passes required app state into props of this component, re-render on change
 };
 
 export default connect(mapStateToProps, {

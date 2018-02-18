@@ -6,7 +6,7 @@ import { logoutUser } from '../appstate/auth/actions';
 
 export interface Props {
   navigation: any;
-  logoutUser: any;
+  logoutUser: Function;
 }
 export interface State { }
 

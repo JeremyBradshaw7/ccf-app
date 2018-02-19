@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, TextInput, TouchableHighlight, View, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
+import { Button, Icon, Item, Input } from 'native-base';
 import { loginUser } from '../appstate/auth/actions';
 
 export interface Props {
@@ -43,7 +44,7 @@ class Login extends React.Component<Props, State> {
     return {
       email: {
         'required': this.state.email.length === 0 ? 'Email is required' : ''
-        // 'format': /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.state.email) ? '' : 'Email format invalid'
+        //'format': /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.state.email) ? '' : 'Email format invalid'
       },
       password: {
         'required': this.state.password.length === 0 ? 'Password is required' : ''
@@ -80,30 +81,45 @@ class Login extends React.Component<Props, State> {
       }
       return '';
     };
+    const emailError: string = fieldError('email');
+    const passwordError: string = fieldError('password');
 
     return (
       <View style={styles.container}>
 
         <Text style={styles.heading}>Coach Competencies</Text>
-        <TextInput
-          style={[styles.textinput, fieldError('email') ? styles.error : '']}
-          placeholder='email'
-          keyboardType='email-address'
-          autoCapitalize='none'
-          onChangeText={(email) => this.emailChanged(email)}
-          onBlur={this.handleBlur('email')}
-          value={this.state.email}
-        />
-        <Text style={styles.errorMessage}>{fieldError('email')}</Text>
-        <TextInput
-          style={[styles.textinput, fieldError('password') ? styles.error : '']}
-          placeholder='password'
-          secureTextEntry={true}
-          onChangeText={(password) => this.passwordChanged(password)}
-          onBlur={this.handleBlur('password')}
-          value={this.state.password}
-        />
-        <Text style={styles.errorMessage}>{fieldError('password')}</Text>
+
+        <Item regular error={!!emailError} style={styles.textitem}>
+          <Icon type='FontAwesome' name='user' style={{color: 'lightsteelblue'}}/>
+          <Input
+            style={styles.textinput}
+            placeholder='email'
+            placeholderTextColor='lightgray'
+            keyboardType='email-address'
+            autoCapitalize='none'
+            onChangeText={(email) => this.emailChanged(email)}
+            onBlur={this.handleBlur('email')}
+            value={this.state.email}
+          />
+          {!!emailError && <Icon name='ios-close-circle' style={styles.cross}/>}
+        </Item>
+        <Text style={styles.errorMessage}>{emailError}</Text>
+
+        <Item regular error={!!passwordError} style={styles.textitem}>
+          <Icon name='ios-lock' style={{color: 'lightsteelblue'}} />
+          <Input
+            style={styles.textinput}
+            placeholder='password'
+            placeholderTextColor='lightgray'
+            secureTextEntry={true}
+            onChangeText={(password) => this.passwordChanged(password)}
+            onBlur={this.handleBlur('password')}
+            value={this.state.password}
+          />
+          {!!passwordError && <Icon name='ios-close-circle' style={styles.cross}/>}
+        </Item>
+        <Text style={styles.errorMessage}>{passwordError}</Text>
+
         <TouchableHighlight style={styles.button}
           underlayColor='lightsteelblue'
           onPress={this.handleSubmit.bind(this)}
@@ -127,29 +143,31 @@ const styles: any = StyleSheet.create({
   },
   heading: {
     fontSize: 24,
-    margin: 12,
+    margin: 18,
     color: 'steelblue'
   },
-  textinput: {
-    margin: 18,
-    fontSize: 18,
-    backgroundColor: '#DDDDDD',
+  textitem: {
     width: 300,
-    padding: 6,
-    borderWidth: 1,
-    borderColor: 'steelblue',
-    borderRadius: 4
+    margin: 18,
+    borderRadius: 8,
+    position: 'relative',
+    left: 8 // should not be necessary but seems to be
   },
-  error: {
-    borderColor: 'red'
+  textinput: {
+    fontSize: 18,
+    height: 40
   },
   errorMessage: {
     color: 'red',
     fontSize: 12,
     width: 300,
-    marginTop: -16,
-    height: 16,
+    marginTop: -15,
+    height: 15,
     marginBottom: 0
+  },
+  cross: {
+    color: 'red',
+    fontSize: 20
   },
   loginErrorMessage: {
     fontSize: 14,

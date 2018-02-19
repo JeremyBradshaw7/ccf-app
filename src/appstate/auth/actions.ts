@@ -67,7 +67,6 @@ export type IAuthActionTypes =
 
 // Now our action CREATORS, I think of these more as 'actions'
 // Our login will be asynchronous, via the api service layer
-// Not sure (yet) how to add type safety to the calls to these action creators from the screens
 export const loginUser = (email: string, password: string) => {
   return dispatch => {
     dispatch({ type: AuthActionTypeKeys.AUTH_LOGIN, payload: email });

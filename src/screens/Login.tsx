@@ -7,7 +7,7 @@ import { loginUser } from '../appstate/auth/actions';
 export interface Props {
   auth: { loading: boolean, error: string };
   navigation: any;
-  loginUser: Function;
+  loginUser: typeof loginUser; // ensure type-safety in using this.props.loginUser
 }
 export interface State {
   email: string;

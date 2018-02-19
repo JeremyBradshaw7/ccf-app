@@ -17,6 +17,7 @@ const INITIAL_STATE = {
 // dont include every email, password text change unless we want to use redux-form for form validation (may do later, but it's not advised
 // We are firing these events back to the forms subscribed to this reducer(?)
 export default (state = INITIAL_STATE, action: IAuthActionTypes) => {
+  console.log('REDUCER:', action);
   switch (action.type) {
     case AuthActionTypeKeys.AUTH_LOGIN: // on log in submitted
       return {

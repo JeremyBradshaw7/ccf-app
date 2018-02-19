@@ -69,7 +69,10 @@ export type IAuthActionTypes =
 // Our login will be asynchronous, via the api service layer
 export const loginUser = (email: string, password: string) => {
   return dispatch => {
-    dispatch({ type: AuthActionTypeKeys.AUTH_LOGIN, payload: email });
+    dispatch({
+      type: AuthActionTypeKeys.AUTH_LOGIN,
+      email: email
+    });
     console.log('call Api', email, password);
     Api.Login(email, password)
       .then(response => {
@@ -82,19 +85,23 @@ export const loginUser = (email: string, password: string) => {
           const user = data.user;
           dispatch({
             type: AuthActionTypeKeys.AUTH_LOGIN_SUCCESS,
-            payload: { user: user, token: token, email: email }
+            user: user,
+            token: token,
+            email: email
           });
         } else {
           dispatch({
             type: AuthActionTypeKeys.AUTH_LOGIN_FAIL,
-            payload: { email: email, error: data['error'] }
+            email: email,
+            error: data['error']
           });
         }
       })
       .catch(err => {
         dispatch({
           type: AuthActionTypeKeys.AUTH_LOGIN_FAIL,
-          payload: { email: email, error: err }
+          email: email,
+          error: err
         });
         console.log('FAIL!', err);
       });

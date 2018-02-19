@@ -11,6 +11,7 @@
       "removeComments": true,
       "strict": true,
       "noImplicitAny": false,
+      "strictFunctionTypes": false, // https://github.com/reactjs/redux/issues/2709
  
       "noUnusedLocals": false,
       "noUnusedParameters": false,

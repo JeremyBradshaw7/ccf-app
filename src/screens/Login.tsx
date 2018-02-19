@@ -44,7 +44,7 @@ class Login extends React.Component<Props, State> {
     return {
       email: {
         'required': this.state.email.length === 0 ? 'Email is required' : ''
-        //'format': /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.state.email) ? '' : 'Email format invalid'
+        // 'format': /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.state.email) ? '' : 'Email format invalid'
       },
       password: {
         'required': this.state.password.length === 0 ? 'Password is required' : ''
@@ -62,11 +62,11 @@ class Login extends React.Component<Props, State> {
 
   emailChanged = (email: string) => {
     this.setState({ email });
-    this.props.auth.error = ''; // anti-pattern
+    this.props.auth.error = ''; // anti-pattern to clear login error state on further edits
   }
   passwordChanged = (password: string) => {
     this.setState({ password });
-    this.props.auth.error = ''; // anti-pattern
+    this.props.auth.error = ''; // anti-pattern to clear login error state on further edits
   }
 
   render() {
@@ -100,6 +100,13 @@ class Login extends React.Component<Props, State> {
             onChangeText={(email) => this.emailChanged(email)}
             onBlur={this.handleBlur('email')}
             value={this.state.email}
+            // following 3 props for keyboard navigation, needs ref on input you are tabbing to - see:
+            // https://stackoverflow.com/questions/32748718/react-native-how-to-select-the-next-textinput-after-pressing-the-next-keyboar
+            blurOnSubmit={ false }
+            onSubmitEditing={() => {
+              this.refs['password']['wrappedInstance'].focus('password');
+            }}
+            returnKeyType={ 'next' }
           />
           {!!emailError && <Icon name='ios-close-circle' style={styles.cross}/>}
         </Item>
@@ -115,6 +122,7 @@ class Login extends React.Component<Props, State> {
             onChangeText={(password) => this.passwordChanged(password)}
             onBlur={this.handleBlur('password')}
             value={this.state.password}
+            ref='password'
           />
           {!!passwordError && <Icon name='ios-close-circle' style={styles.cross}/>}
         </Item>
@@ -128,7 +136,7 @@ class Login extends React.Component<Props, State> {
             <ActivityIndicator color='white' /> : <Text style={styles.buttonText}>Log In</Text>
           }
         </TouchableHighlight>
-        <Text style={styles.loginErrorMessage}>{this.props.auth.error ? 'Log In failed. Please check your credentials and try again.' : '\n'}</Text>
+        <Text style={styles.loginErrorMessage}>{this.props.auth.error ? 'Log In failed. Please check your credentials and try again.' : ''}</Text>
       </View>
     );
   }
@@ -173,7 +181,8 @@ const styles: any = StyleSheet.create({
     fontSize: 14,
     textAlign: 'center',
     color: 'red',
-    width: 300
+    width: 300,
+    height: 50
   },
   button: {
     alignItems: 'center',

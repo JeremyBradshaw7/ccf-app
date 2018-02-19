@@ -13,10 +13,10 @@ export default class Assessment extends React.Component<Props, State> {
 
   static navigationOptions = ({ navigation }) => ({
     drawerIcon: ({ focused, tintColor }) => {
-      return  <Icon type='FontAwesome' name='user' style={{color: tintColor, fontSize: 26}} />;
+      return <Icon type='FontAwesome' name='user' style={{ color: tintColor, fontSize: 26 }} />;
     },
     tabBarIcon: ({ focused, tintColor }) => {
-      return  <Icon type='FontAwesome' name='user' style={{color: tintColor, fontSize: 26}} />;
+      return <Icon type='FontAwesome' name='user' style={{ color: tintColor, fontSize: 26 }} />;
     }
   })
 
@@ -31,16 +31,18 @@ export default class Assessment extends React.Component<Props, State> {
       <Container>
         <Header>
           <Left style={{ flex: 1 }}>
-            <Button transparent>
-              {this.mode === 'CoachAssessment' ?
-                <Icon name='ios-arrow-back-outline' onPress={() => {
-                  // want to go Back to the PARENT navigator's previous screen
-                  // https://github.com/react-navigation/react-navigation/issues/335 suggests this:
-                  this.props.navigation.goBack(null);
-                }}/> :
-                <Icon name='menu' onPress={() => this.props.navigation.navigate('DrawerOpen')} />
-              }
-            </Button>
+            {this.mode === 'CoachAssessment' ?
+              <Button transparent onPress={() => {
+                // want to go Back to the PARENT navigator's previous screen
+                // https://github.com/react-navigation/react-navigation/issues/335 suggests this:
+                this.props.navigation.goBack(null);
+              }} >
+                <Icon name='ios-arrow-back-outline' />
+              </Button> :
+              <Button transparent onPress={() => this.props.navigation.navigate('DrawerOpen')} >
+                <Icon name='menu'/>
+              </Button>
+            }
           </Left>
           <Body style={{ flex: 6, justifyContent: 'center', alignItems: 'center' }}>
             <Title>Assessment</Title>

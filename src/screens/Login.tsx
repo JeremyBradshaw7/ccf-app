@@ -7,7 +7,7 @@ import { loginUser } from '../appstate/auth/actions';
 export interface Props {
   auth: { loading: boolean, error: string };
   navigation: any;
-  loginUser: any;
+  loginUser: Function;
 }
 export interface State {
   email: string;
@@ -35,9 +35,9 @@ class Login extends React.Component<Props, State> {
     const errors: object = this.validateForm();
     const formValid: boolean = !Object.keys(errors).some(x => Object.keys(errors[x]).some(y => errors[x][y] !== ''));
     if (formValid) {
-      console.log('Log In');
       const { email, password } = this.state;
-      this.props.loginUser({ email, password });
+      console.log('Log In ', email, password);
+      this.props.loginUser(email, password);
     }
   }
 
@@ -200,13 +200,14 @@ const styles: any = StyleSheet.create({
   }
 });
 
+const mapDispatchToProps = {
+  loginUser
+};
+
 const mapStateToProps = state => {
   // app state changes we are subscribing to
   console.log('state fed to login as props:', state);
   return { auth: state.auth }; // passes required app state into props of this component, re-render on change
 };
 
-export default connect(mapStateToProps, {
-  // actions we want to call
-  loginUser
-})(Login); // connect this screen up to redux store
+export default connect(mapStateToProps, mapDispatchToProps)(Login); // connect this screen up to redux store

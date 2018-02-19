@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, TextInput, TouchableHighlight, View, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, TextInput, TouchableHighlight, View, ActivityIndicator, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { Button, Icon, Item, Input } from 'native-base';
 import { loginUser } from '../appstate/auth/actions';
@@ -30,6 +30,7 @@ class Login extends React.Component<Props, State> {
     this.setState({
       touched: { ...this.state.touched, submit: true }
     });
+    Keyboard.dismiss();
 
     const errors: object = this.validateForm();
     const formValid: boolean = !Object.keys(errors).some(x => Object.keys(errors[x]).some(y => errors[x][y] !== ''));

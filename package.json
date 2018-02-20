@@ -16,15 +16,20 @@
 		"all": "npm run build && concurrently -r 'npm run watch' 'react-native run-ios' 'react-native run-android'"
 	},
 	"dependencies": {
-		"native-base": "^2.3.8",
+		"native-base": "^2.3.9",
 		"react": "16.2.0",
 		"react-native": "0.53.0",
 		"react-navigation": "^1.0.3",
-		"react-navigation-slide-from-right-transition": "^1.0.4"
+		"react-navigation-slide-from-right-transition": "^1.0.4",
+		"react-redux": "^5.0.6",
+		"redux": "^3.7.2",
+		"redux-logger": "^3.0.6",
+		"redux-persist": "^5.9.0",
+		"redux-thunk": "^2.2.0"
 	},
 	"devDependencies": {
 		"@types/jest": "^22.1.2",
-		"@types/react": "^16.0.36",
+		"@types/react": "^16.0.38",
 		"@types/react-native": "^0.52.8",
 		"babel-jest": "22.2.2",
 		"babel-preset-react-native": "4.0.0",

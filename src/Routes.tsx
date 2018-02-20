@@ -11,7 +11,7 @@ import { StackNavigator, DrawerNavigator, TabNavigator } from 'react-navigation'
 import Login from './screens/Login';
 import Account from './screens/Account';
 
-export const LoginStack = StackNavigator({
+export const AuthStack = StackNavigator({
   Login: {
     screen: Login,
     navigationOptions: {
@@ -183,7 +183,7 @@ export const CoachStack = StackNavigator(
 import CoachList from './screens/CoachList';
 import Logout from './screens/Logout';
 
-export const DrawerStack = DrawerNavigator({
+export const RootStack = DrawerNavigator({
   CoachStack: {
     screen: CoachStack,
     navigationOptions: {
@@ -200,30 +200,3 @@ export const DrawerStack = DrawerNavigator({
     screen: Logout
   }
 });
-
-/**
- * Root navigator, to switch between these two states
- */
-export const createRootNavigator = (signedIn = false) => {
-  return StackNavigator(
-    {
-      SignedIn: {
-        screen: DrawerStack,
-        navigationOptions: {
-          gesturesEnabled: false
-        }
-      },
-      SignedOut: {
-        screen: LoginStack,
-        navigationOptions: {
-          gesturesEnabled: false
-        }
-      }
-    },
-    {
-      headerMode: 'none',
-      mode: 'modal',
-      initialRouteName: signedIn ? 'SignedIn' : 'SignedOut'
-    }
-  );
-};

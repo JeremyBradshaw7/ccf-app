@@ -1,14 +1,16 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { onSignOut } from '../services/auth';
 import { Icon } from 'native-base';
+import { connect } from 'react-redux';
+import { logoutUser } from '../appstate/auth/actions';
 
 export interface Props {
   navigation: any;
+  logoutUser: typeof logoutUser;
 }
 export interface State { }
 
-export default class Logout extends React.Component<Props, State> {
+class Logout extends React.Component<Props, State> {
   static navigationOptions = {
     drawerIcon: <Icon name='md-exit'/>
   };
@@ -18,7 +20,8 @@ export default class Logout extends React.Component<Props, State> {
   }
 
   componentWillMount() {
-    onSignOut().then(() => this.props.navigation.navigate('SignedOut'));
+    // sign out via appstate
+    this.props.logoutUser();
   }
 
   render() {
@@ -43,3 +46,14 @@ const styles: any = StyleSheet.create({
     color: 'steelblue'
   }
 });
+
+const mapStateToProps = state => {
+  // app state changes we are subscribing to
+  console.log('state fed to login as props:', state);
+  return { auth: state.auth }; // passes required app state into props of this component
+};
+
+export default connect(mapStateToProps, {
+  // actions we want to call
+  logoutUser
+})(Logout); // connect this screen up to redux store

@@ -28,8 +28,8 @@ export default class CoachList extends React.Component<Props, State> {
       <Container>
         <Header>
           <Left style={{ flex: 1 }}>
-            <Button transparent>
-              <Icon name='menu' onPress={() => this.props.navigation.navigate('DrawerOpen')} />
+            <Button transparent onPress={() => this.props.navigation.navigate('DrawerOpen')}>
+              <Icon name='menu'/>
             </Button>
           </Left>
           <Body style={{ flex: 6, justifyContent: 'center', alignItems: 'center' }}>

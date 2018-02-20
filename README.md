@@ -43,3 +43,7 @@ To run on a physical device attached via cable, see the additional instructions 
 
 TBD
 
+## Generating an icon & splash screen
+
+Using `generator-rn-toolbox`, see https://github.com/bamlab/generator-rn-toolbox/tree/master/generators/assets#generate-splashscreens
+

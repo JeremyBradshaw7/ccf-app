@@ -88,7 +88,7 @@ class Login extends React.Component<Props, State> {
     return (
       <View style={styles.container}>
 
-        <Image style={styles.logo} source={require('../../assets/FullLogo.png')} />
+        <Image style={styles.logo} source={require('../../assets/FullLogoTransparentSmall.png')} />
         <Text style={styles.heading}>Coach Competencies</Text>
 
         <Item regular error={!!emailError} style={styles.textitem}>
@@ -149,17 +149,17 @@ const styles: any = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: 'whitesmoke'
+    backgroundColor: 'white'
   },
   logo: {
     width: 300,
-    height: 70,
+    height: 60,
     resizeMode: 'contain',
-    marginTop: 50
+    marginTop: 60
   },
   heading: {
     fontSize: 24,
-    margin: 18,
+    marginBottom: 18,
     color: 'steelblue'
   },
   textitem: {

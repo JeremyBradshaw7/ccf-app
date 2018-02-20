@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, TextInput, TouchableHighlight, View, ActivityIndicator, Keyboard } from 'react-native';
+import { StyleSheet, Text, TextInput, TouchableHighlight, View, ActivityIndicator, Keyboard, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { Button, Icon, Item, Input } from 'native-base';
 import { loginUser } from '../appstate/auth/actions';
@@ -88,6 +88,7 @@ class Login extends React.Component<Props, State> {
     return (
       <View style={styles.container}>
 
+        <Image style={styles.logo} source={require('../../assets/FullLogoTransparentSmall.png')} />
         <Text style={styles.heading}>Coach Competencies</Text>
 
         <Item regular error={!!emailError} style={styles.textitem}>
@@ -146,13 +147,19 @@ class Login extends React.Component<Props, State> {
 const styles: any = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: 'whitesmoke'
+    backgroundColor: '#f2f2f2'
+  },
+  logo: {
+    width: 300,
+    height: 60,
+    resizeMode: 'contain',
+    marginTop: 60
   },
   heading: {
     fontSize: 24,
-    margin: 18,
+    marginBottom: 18,
     color: 'steelblue'
   },
   textitem: {
@@ -160,6 +167,7 @@ const styles: any = StyleSheet.create({
     margin: 18,
     borderRadius: 8,
     position: 'relative',
+    backgroundColor: 'white',
     left: 8 // should not be necessary but seems to be
   },
   textinput: {

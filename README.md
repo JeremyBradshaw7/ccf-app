@@ -45,5 +45,15 @@ TBD
 
 ## Generating an icon & splash screen
 
-Using `generator-rn-toolbox`, see https://github.com/bamlab/generator-rn-toolbox/tree/master/generators/assets#generate-splashscreens
+Using `generator-rn-toolbox`, see https://github.com/bamlab/generator-rn-toolbox/tree/master/generators/assets#generate-splashscreens :
 
+```
+yo rn-toolbox:assets --icon icon-ios.png --ios
+yo rn-toolbox:assets --splash splash.png --ios
+
+yo rn-toolbox:assets --icon icon-android.png --android
+yo rn-toolbox:assets --splash splash.png --android
+yo rn-toolbox:assets --android-notification-icon icon-android.png
+```
+
+After setting the splash screen for android it is necessary to reset the background color in ./android/app/src/main/res/values/colors.xml by putting the hexacode #FFFFFF in instead of rgb(0,0,0).

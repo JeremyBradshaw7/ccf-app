@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, TextInput, TouchableHighlight, View, ActivityIndicator, Keyboard } from 'react-native';
+import { StyleSheet, Text, TextInput, TouchableHighlight, View, ActivityIndicator, Keyboard, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { Button, Icon, Item, Input } from 'native-base';
 import { loginUser } from '../appstate/auth/actions';
@@ -88,6 +88,7 @@ class Login extends React.Component<Props, State> {
     return (
       <View style={styles.container}>
 
+        <Image style={styles.logo} source={require('../../assets/FullLogo.png')} />
         <Text style={styles.heading}>Coach Competencies</Text>
 
         <Item regular error={!!emailError} style={styles.textitem}>
@@ -146,9 +147,15 @@ class Login extends React.Component<Props, State> {
 const styles: any = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: 'whitesmoke'
+  },
+  logo: {
+    width: 300,
+    height: 70,
+    resizeMode: 'contain',
+    marginTop: 50
   },
   heading: {
     fontSize: 24,

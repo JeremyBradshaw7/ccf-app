@@ -149,7 +149,7 @@ const styles: any = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: 'white'
+    backgroundColor: '#f2f2f2'
   },
   logo: {
     width: 300,
@@ -167,6 +167,7 @@ const styles: any = StyleSheet.create({
     margin: 18,
     borderRadius: 8,
     position: 'relative',
+    backgroundColor: 'white',
     left: 8 // should not be necessary but seems to be
   },
   textinput: {
